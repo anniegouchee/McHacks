@@ -20,11 +20,11 @@ NOTE: Some of our code was inspired by these cited websites.
 
 ## Warning
 Our team was not able to finish implementing the desired product. We experienced some issues with WIX, which did not allow us to connect the work that was done for the backend to the work that was done for the frontend. This is the reason why we are providing a link to this GitHub, so that you can see our work on data extracting. Other issues with WIX prevented us from implementing a working program (the parts that needed to be done through WIX, such as user input for recipes). Ideally, our product would have worked as such:
-1- A user searches for a restaurant
-2- The user browses through the chosen restaurant's menu
-3- The user selects a specific dish 
-4- The user can view the time, ingredients and steps required to prepare the dish
-5- The user can "add" the dish to their cart
+\n1- A user searches for a restaurant
+\n2- The user browses through the chosen restaurant's menu
+\n3- The user selects a specific dish 
+\n4- The user can view the time, ingredients and steps required to prepare the dish
+\n5- The user can "add" the dish to their cart
 6- FINDine captures the list of ingredients needed for the recipe
 7- FINDine calculates the needed amount of ingredients needed for the recipe
 8- The user can add multiple dishes from different menus
