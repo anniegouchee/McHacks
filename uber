@@ -1,0 +1,100 @@
+import time
+import driver
+from telnetlib import EC
+
+from selenium import webdriver
+from bs4 import BeautifulSoup
+from urllib.request import Request, urlopen
+import json
+import ssl
+import urllib
+
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+
+
+def open_page(url):
+    req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+    page = urlopen(req).read()
+    soup = BeautifulSoup(page, 'html.parser')
+    return soup
+
+
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'} # set the headers
+ssl._create_default_https_context = ssl._create_unverified_context
+
+data = {}
+
+
+url = "https://www.ubereats.com/ca/city/montreal-qc"
+soup = open_page(url)
+
+i = 0
+
+for resto in soup.findAll('h3'): # find the name of the restaurant
+
+    if i == 3: break
+        #b = resto.findNext('div')
+
+        # driver = webdriver.Chrome()
+        # driver.get(url)
+        #
+        # # scrolling
+        #
+        # lastHeight = driver.execute_script("return document.body.scrollHeight")
+        #
+        # # print(lastHeight)
+        #
+        # pause = 1
+        # while True:
+        #     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        #     time.sleep(pause)
+        #     newHeight = driver.execute_script("return document.body.scrollHeight")
+        #     if newHeight == lastHeight:
+        #         break
+        #     lastHeight = newHeight
+        #     # print(lastHeight)
+        #
+        # div = resto.find('div', attrs = {'class': 'lazyload-wrapper'})
+        # pic = div.find('picture')
+
+    if str(resto).count("?") == 0:
+        a = resto.findPrevious('a')
+        food_url = "https://www.ubereats.com" + a.get('href')
+        print(food_url)
+
+        food_list = []
+        i+= 1
+        try:
+            food_soup = open_page(food_url)
+
+            print("#" + resto.text)
+            for food in food_soup.findAll('span', attrs = {'class': 'lm g6 ln bo bp et el b1'}):
+                food_list.add(str(food.text))
+                i -= 1
+
+        except:
+            i -= 1
+
+        if food_list == []:
+            i -= 1
+        else:
+            key = str(resto.text)
+            print(key)
+            data[key] = (food_list)
+
+print(data)
+
+            #if food is not None:
+
+                #b = food.findPrevious('a')
+                #description_url = "https://www.ubereats.com" + b.get('href')
+                #description_soup = open_page(description_url)
+                #print(description_url)
+                #description = description_soup.find('div', attrs = {'class': 'iy iz lp cx'})
+                #print(description.text)
+
+
+with open('final_result.json', 'w+', encoding='utf-8') as out: # writing the ginal file
+    json.dump(data, out, indent=4, ensure_ascii=False)
+
