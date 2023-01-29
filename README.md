@@ -1,6 +1,9 @@
 # McHacks
 Hello McHacks! We are team "Team" and our innovative project is called FINDine. FINDine connects users, allowing them to choose their favorite dishes from local restaurants, browse through user submitted copy cat recipes, and generate a shopping cart with all the ingredients needed to prepare the desired dishes. This helps users see how much money they can save by preparing their favourite dishes from the comfort of their home. 
 
+## Link to website:
+https://vpoutreachbiodesig.wixsite.com/my-site-1
+
 
 ## Tools used:
 - Velo by Wix
